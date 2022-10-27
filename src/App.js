@@ -1,10 +1,8 @@
-import Homepage from "./homepage.component";
+import Homepage from "./pages/HomePage/homepage.component";
 
 function App() {
   return (
-    <div>
      <Homepage/>
-    </div>
   );
 }
 
