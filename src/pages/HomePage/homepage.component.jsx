@@ -1,6 +1,6 @@
 import React from 'react'
 import Directory from '../../components/directory/directory.component'
-import './homepage.styles.scss'
+import '../HomePage/homepage.styles.scss'
 
 export default function Homepage() {
   return (
