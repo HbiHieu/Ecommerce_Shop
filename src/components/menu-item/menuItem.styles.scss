@@ -12,6 +12,10 @@
     position: relative;
     overflow: hidden;
 
+    &:hover img {
+      transform: scale(1.2);
+    }
+
     &.large {
       height: 320px;
     }
@@ -37,10 +41,6 @@
       transition: 0.25s;
     }
 
-    .img:hover {
-      transform: scale(1.2);
-    }
-  
     .content {
       height: 90px;
       padding: 0 25px;
@@ -48,14 +48,22 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
+      border: 1px solid #fff;
       position: absolute;
+      color: white;
+
+      &:hover {
+        background-color: #fff;
+        color : #333 ;
+        border : 1px solid #333 ;
+        cursor: pointer;
+        opacity: 0.7;
+      }
       
       .title {
         font-weight: bold;
         margin-bottom: 6px;
         font-size: 22px;
-        color: #4a4a4a;
       }
   
       .subtitle {
