@@ -1,19 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./menuItem.styles.scss"
 
-export default function MenuItem({ title , imageUrl , size }) {
+export default function MenuItem({ title , imageUrl , size , linkUrl}) {
   return (
-    <div 
+    <div
     className={`${size} menu-item`}
-    // style={{
-    //   backgroundImage : `url(${imageUrl})` ,
-    // }}
     >
         <img className='img' src={`${imageUrl}`} alt="" />
-        <div className='content'>
+        <Link 
+        className='content'
+        to={`${linkUrl}`}
+        >
           <div className='title'>{title}</div>
           <span className='subtitle'>Shop Now</span>
-        </div>
+        </Link>
       </div>
   )
 }
