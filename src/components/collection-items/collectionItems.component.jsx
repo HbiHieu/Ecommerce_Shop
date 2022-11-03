@@ -1,7 +1,7 @@
 import React from 'react'
 import "./collectionItems.styles.scss"
 
-export default function CollectionItems({ id , name , price , imageUrl }) {
+export default function CollectionItem({ id , name , price , imageUrl }) {
   return (
     <div className='collection-item'>
     <div
