@@ -2,9 +2,9 @@ import React from 'react'
 
 import "./Button.styles.scss"
 
-export default function Button({ children , ...otherProps}) {
+export default function Button({ children , isGoogleButton , ...otherProps}) {
   return (
-    <button className='custom-button' {...otherProps} >
+    <button className={ isGoogleButton ? `google-button` :`custom-button`} {...otherProps} >
        {children}
     </button>
   )
