@@ -2,6 +2,9 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 import { signInWithPopup } from 'firebase/auth'
+import { async } from '@firebase/util'
+
+import { collection , addDoc , setDoc , doc } from 'firebase/firestore'
 
 const config = {
   apiKey: "AIzaSyB__ZHT0SYUCc46ofP2d2wtl8geRrub4Lk",
@@ -14,10 +17,27 @@ const config = {
 }
 
 // register app with firebase
-firebase.initializeApp(config)
 
+firebase.initializeApp(config);
 export const auth = firebase.auth() ;
-export const firestore = firebase.firestore() ;
+export const db = firebase.firestore() ;
+
+export const handleAddUserToDB = async ( userAuth ) => {
+  try {
+
+    const idUser = userAuth.uid ;
+    const { displayName , email } = userAuth ;
+    const createAt = new Date() ;
+
+    const docRef = await setDoc(doc(db, "users",idUser), {
+      name : displayName ,
+      email,
+      createAt,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
 
 const provider = new firebase.auth.GoogleAuthProvider() ;
 
