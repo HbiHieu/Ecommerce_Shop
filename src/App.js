@@ -6,10 +6,10 @@ import ShopPage from "./pages/ShopPage/ShopPage.component";
 import Homepage from "./pages/HomePage/homepage.component";
 import NoMatch from "./components/Page404/NoMatch.component";
 import Header from './layout/Header/Header';
-import SignIn from './components/SignIn/SignIn.component';
 
 import { auth , handleAddUserToDB } from './firebase/firebase.util';
 import { onAuthStateChanged } from 'firebase/auth';
+import SignInAndSignUp from './pages/SignIn-SignUp/SignInAndSignUp';
 
 function App() {
 
@@ -41,7 +41,7 @@ function App() {
       </Route>
       <Route path="/shop" element={<ShopPage/>}>
       </Route>
-      <Route path="/signIn" element={<SignIn/>}>
+      <Route path="/signInAndSignUp" element={<SignInAndSignUp/>}>
       </Route>
       <Route path="*" element={<NoMatch />}>
       </Route>

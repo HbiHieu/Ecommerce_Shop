@@ -35,7 +35,7 @@ const Header = ({isLogin}) => {
         onClick={ handleSignOut }
         >SIGN OUT</div>
         :
-        <Link className='option' to='signIn'>SIGN IN</Link>
+        <Link className='option' to='/signInAndSignUp'>SIGN IN</Link>
       }
     </div>
   </div>
