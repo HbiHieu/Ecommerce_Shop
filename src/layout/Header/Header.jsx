@@ -7,13 +7,21 @@ import { LogoHeader } from '../../components/icons';
 import { auth } from '../../firebase/firebase.util';
 import { signOut } from 'firebase/auth';
 
+import { useDispatch } from 'react-redux';
+import { userSlice } from '../../redux/user/userSlice';
+
 import './Header.styles.scss';
 
 
 const Header = ({isLogin}) => {
 
+  const dispatch = useDispatch() ;
+
   const handleSignOut = () => {
     signOut(auth) ; 
+    dispatch(
+      userSlice.actions.setUser({}) 
+      )
   }
 
   return (

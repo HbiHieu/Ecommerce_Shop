@@ -11,10 +11,14 @@ import { auth , handleAddUserToDB } from './firebase/firebase.util';
 import { onAuthStateChanged } from 'firebase/auth';
 import SignInAndSignUp from './pages/SignIn-SignUp/SignInAndSignUp';
 
+import { userSlice } from "./redux/user/userSlice" ;
+import { useDispatch } from 'react-redux';
+
 function App() {
 
-  const [isLogin,setIsLogin] = useState(false) ;
+  const [isLogin,setIsLogin] = useState(null) ;
   const navigate = useNavigate() ;
+  const dispatch = useDispatch() ;
 
   useEffect( () => {
     const checkUser = onAuthStateChanged(auth , (user) => {
@@ -22,6 +26,14 @@ function App() {
         handleAddUserToDB(user);
         setIsLogin(true) ;
         navigate("/");
+        dispatch(
+          userSlice.actions.setUser({
+            id: user.uid ,
+            name : user.displayName ,
+            picture : user.photoURL ,
+            email : user.email ,
+          })
+        )
       } 
       else {
         setIsLogin(false) ;
@@ -29,12 +41,12 @@ function App() {
       }
     });
     return () => checkUser() ;
-  },[]) 
+  },[] ) 
    
   return (
      <div>
       <Header
-      isLogin={isLogin}
+      isLogin={isLogin} 
       />
       <Routes>
       <Route path="/" element={<Homepage/>}>
