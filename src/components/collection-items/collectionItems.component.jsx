@@ -1,7 +1,27 @@
 import React from 'react'
 import "./collectionItems.styles.scss"
+import  Button  from "../Button/Button.component"
+
+import { cartSlice } from '../../redux/cart/cartSlice'
+import { useDispatch } from 'react-redux'
 
 export default function CollectionItem({ id , name , price , imageUrl }) {
+    
+   const dispatch = useDispatch() ; 
+
+   const handleAddToCart = () => {
+     dispatch(
+      cartSlice.actions.addToCart(
+        {
+        id ,
+        name ,
+        price ,
+        imageUrl ,
+        }
+      )
+     )
+   }
+
   return (
     <div className='collection-item'>
     <div
@@ -12,8 +32,11 @@ export default function CollectionItem({ id , name , price , imageUrl }) {
     />
     <div className='collection-footer'>
       <span className='name'>{name}</span>
-      <span className='price'>{price}</span>
+      <span className='price'>{`${price}$`}</span>
     </div>
+     <Button
+     onClick = {handleAddToCart} 
+     >ADD TO CART</Button>
   </div>
   )
 }

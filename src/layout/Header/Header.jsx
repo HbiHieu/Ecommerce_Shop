@@ -3,6 +3,8 @@ import { Link , useNavigate } from 'react-router-dom';
 import { useState ,useEffect } from 'react';
 
 import { LogoHeader } from '../../components/icons';
+import CartIcon from '../../components/cart/cart-icon/cart-icon';
+import CartDropdown from '../../components/cart/cart-dropDown/cart-dropDown';
 
 import { auth } from '../../firebase/firebase.util';
 import { signOut } from 'firebase/auth';
@@ -15,6 +17,8 @@ import './Header.styles.scss';
 
 const Header = ({isLogin}) => {
 
+  const [toggleCart , setToggleCart] = useState(false) ;
+
   const dispatch = useDispatch() ;
 
   const handleSignOut = () => {
@@ -23,6 +27,11 @@ const Header = ({isLogin}) => {
       userSlice.actions.setUser({}) 
       )
   }
+
+  const handleToggleCart = () => {
+    setToggleCart( (prev) => !prev ) 
+  }
+
 
   return (
     <div className='header'>
@@ -45,6 +54,16 @@ const Header = ({isLogin}) => {
         :
         <Link className='option' to='/signInAndSignUp'>SIGN IN</Link>
       }
+      {
+        isLogin && <CartIcon
+        handleToggleCart={ handleToggleCart }
+        ></CartIcon> 
+      }
+      <div>
+        {
+         toggleCart && <CartDropdown></CartDropdown>
+        } 
+      </div>
     </div>
   </div>
   );
