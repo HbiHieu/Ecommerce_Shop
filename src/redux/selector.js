@@ -1,3 +1,5 @@
-export const selectorUser = (state) => state.user ;
-
-export const selectorCartItems = (state) => state.cart.cartItems ;
+export { 
+    selectorCartItems ,
+    selectorTotalCart
+} from "./cart/cartSlice.selector"
+export { selectorUser } from "./user/userSlice.selector"

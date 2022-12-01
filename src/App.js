@@ -13,6 +13,7 @@ import SignInAndSignUp from './pages/SignIn-SignUp/SignInAndSignUp';
 
 import { userSlice } from "./redux/user/userSlice" ;
 import { useDispatch } from 'react-redux';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
     });
     return () => checkUser() ;
   },[] ) 
-   
+
   return (
      <div>
       <Header
@@ -54,6 +55,8 @@ function App() {
       <Route path="/shop" element={<ShopPage/>}>
       </Route>
       <Route path="/signInAndSignUp" element={<SignInAndSignUp/>}>
+      </Route>
+      <Route path='/checkout' element={<CheckoutPage/>} >
       </Route>
       <Route path="*" element={<NoMatch />}>
       </Route>

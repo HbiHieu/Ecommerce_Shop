@@ -14,11 +14,19 @@
     background-color: black;
     text-align: center;
     justify-content: center;
+
+    a {
+      color: white;
+    }
   
     &:hover {
       background-color: white;
       color: black;
       border: 1px solid black;
+    }
+
+    &:hover a {
+      color: black;
     }
   }
 

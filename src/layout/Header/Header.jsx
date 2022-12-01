@@ -61,7 +61,7 @@ const Header = ({isLogin}) => {
       }
       <div>
         {
-         toggleCart && <CartDropdown></CartDropdown>
+         ( toggleCart && isLogin ) && <CartDropdown></CartDropdown>
         } 
       </div>
     </div>
