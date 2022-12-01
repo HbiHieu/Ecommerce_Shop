@@ -10,7 +10,7 @@ import { selectorCartItems } from '../../../redux/selector';
 import { useSelector } from 'react-redux';
 import CartItem from '../cartItems/cartItems';
 
-const CartDropdown = () => {
+const CartDropdown = ({setToggleCart}) => {
    
   const cartItems = useSelector ( selectorCartItems ) ;
   console.log('re-render') ;
@@ -27,7 +27,9 @@ const CartDropdown = () => {
         : <span className='empty-message'>Your cart is empty</span>
       }
       </div>
-      <Button>
+      <Button
+      onClick = { () => setToggleCart(false) }
+      >
         <Link to={'checkout'}>GO TO CHECK OUT</Link>
       </Button>
     </div>

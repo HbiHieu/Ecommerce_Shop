@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { handleAddToCart } from "./cartSlice.utils";
+import { handleAddItem, handleRemoveItem , handleClearItem } from "./cartSlice.utils";
 
 export const cartSlice = createSlice({
     name : "cart" ,
@@ -8,7 +8,14 @@ export const cartSlice = createSlice({
     } ,
     reducers : {
         addToCart : ( state , action ) => {
-            state.cartItems = handleAddToCart( state.cartItems , action.payload ) ;
+            state.cartItems = handleAddItem( state.cartItems , action.payload ) ;
+        } ,
+        clearCartItem : ( state , action ) => {
+            state.cartItems = handleClearItem( state.cartItems , action.payload )
+        }
+        ,
+        removeCartItem : ( state , action ) => {
+            state.cartItems = handleRemoveItem( state.cartItems , action.payload ) ;
         }
     }
 })
