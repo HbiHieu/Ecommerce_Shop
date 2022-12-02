@@ -9,15 +9,18 @@ import CartDropdown from "../../components/cart/cart-dropDown/cart-dropDown";
 import { auth } from "../../firebase/firebase.util";
 import { signOut } from "firebase/auth";
 
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { userSlice } from "../../redux/user/userSlice";
+import { selectorUser } from "../../redux/selector";
 
 import "./Header.styles.scss";
 
-const Header = ({ isLogin }) => {
+const Header = () => {
   const [toggleCart, setToggleCart] = useState(false);
 
   const dispatch = useDispatch();
+
+  const isLogin = useSelector( selectorUser ) ;
 
   const handleSignOut = () => {
     signOut(auth);

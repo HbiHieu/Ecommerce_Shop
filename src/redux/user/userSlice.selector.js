@@ -1,2 +1,2 @@
-export const selectorUser = (state) => state.user ;
+export const selectorUser = (state) => state.userSlice.currentUser ;
 

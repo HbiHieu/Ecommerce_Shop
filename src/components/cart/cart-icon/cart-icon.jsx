@@ -10,7 +10,7 @@ import './cart-icon.styles.scss';
 
 const CartIcon = ( { handleToggleCart } ) => {
   const cartItems = useSelector ( selectorCartItems ) ;
-  console.log(cartItems) ;
+
   return (
     <div 
     className='cart-icon' 

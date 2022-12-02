@@ -17,7 +17,6 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 function App() {
 
-  const [isLogin,setIsLogin] = useState(null) ;
   const navigate = useNavigate() ;
   const dispatch = useDispatch() ;
 
@@ -25,7 +24,6 @@ function App() {
     const checkUser = onAuthStateChanged(auth , (user) => {
       if(user) {
         handleAddUserToDB(user);
-        setIsLogin(true) ;
         navigate("/");
         dispatch(
           userSlice.actions.setUser({
@@ -37,7 +35,6 @@ function App() {
         )
       } 
       else {
-        setIsLogin(false) ;
         console.log("user signed out")
       }
     });
@@ -47,7 +44,7 @@ function App() {
   return (
      <div>
       <Header
-      isLogin={isLogin} 
+      //isLogin={isLogin}
       />
       <Routes>
       <Route path="/" element={<Homepage/>}>
