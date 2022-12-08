@@ -1,21 +1,21 @@
-import { useState ,useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
-import { Route , Routes , useNavigate } from 'react-router-dom'
-
-import ShopPage from "./pages/ShopPage/ShopPage.component";
-import Homepage from "./pages/HomePage/homepage.component";
-import NoMatch from "./components/Page404/NoMatch.component";
-import Header from './layout/Header/Header';
+import { useNavigate } from 'react-router-dom'
+import Router from './routers';
 
 import { auth , handleAddUserToDB } from './firebase/firebase.util';
 import { onAuthStateChanged } from 'firebase/auth';
-import SignInAndSignUp from './pages/SignIn-SignUp/SignInAndSignUp';
 
 import { userSlice } from "./redux/user/userSlice" ;
 import { useDispatch } from 'react-redux';
-import CheckoutPage from './pages/checkout/checkout.component';
+
+import ToastMessage from './components/Toast/toast.component';
+import { AppContext } from './context';
+
 
 function App() {
+
+  const {toastState} = useContext(AppContext) ;
 
   const navigate = useNavigate() ;
   const dispatch = useDispatch() ;
@@ -39,25 +39,19 @@ function App() {
       }
     });
     return () => checkUser() ;
-  },[] ) 
+  },[] ) ;
 
   return (
-     <div>
-      <Header
-      //isLogin={isLogin}
-      />
-      <Routes>
-      <Route path="/" element={<Homepage/>}>
-      </Route>
-      <Route path="/shop" element={<ShopPage/>}>
-      </Route>
-      <Route path="/signInAndSignUp" element={<SignInAndSignUp/>}>
-      </Route>
-      <Route path='/checkout' element={<CheckoutPage/>} >
-      </Route>
-      <Route path="*" element={<NoMatch />}>
-      </Route>
-      </Routes>
+     <div style={{
+      position:"relative" 
+     }}>
+      <Router/>
+      {
+        toastState.isShow && 
+       <ToastMessage
+       message = {toastState.message} 
+       />
+      }
      </div>
   );
 }

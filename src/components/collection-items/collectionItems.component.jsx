@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./collectionItems.styles.scss"
 import  Button  from "../Button/Button.component"
 
 import { cartSlice } from '../../redux/cart/cartSlice'
 import { useDispatch } from 'react-redux'
+import { AppContext } from '../../context'
 
 export default function CollectionItem({ id , name , price , imageUrl }) {
-    
+
+   const { setToastState } = useContext(AppContext) ;  
    const dispatch = useDispatch() ; 
 
    const handleAddToCart = () => {
@@ -20,6 +22,7 @@ export default function CollectionItem({ id , name , price , imageUrl }) {
         }
       )
      )
+     setToastState( { isShow:true , message : "Added to cart!" } ) ;
    }
 
   return (
